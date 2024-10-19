@@ -1,0 +1,22 @@
+name: Sync to Hugging Face hub
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          lfs: true
+      - name: Pull from remote
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: git pull https://Devchuz:$HF_TOKEN@huggingface.co/spaces/Devchuz/llm_image main
+      - name: Push to hub
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: git push https://Devchuz:$HF_TOKEN@huggingface.co/spaces/Devchuz/llm_image main

@@ -1,0 +1,6 @@
+langchain_anthropic
+python-multipart
+fastapi 
+uvicorn 
+langchain 
+pillow
